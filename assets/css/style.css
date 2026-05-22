@@ -1,0 +1,46 @@
+body {
+    background: #f3f6fb;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+.animate-fade-in.delay-1 { animation-delay: 0.08s; }
+.animate-fade-in.delay-2 { animation-delay: 0.16s; }
+
+.signature-wrapper {
+    min-height: 280px;
+}
+
+#signature-pad {
+    width: 100%;
+    height: 280px;
+    display: block;
+    background: #ffffff;
+    border: 2px dashed #ced4da;
+    border-radius: 0.5rem;
+    cursor: crosshair;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.btn-primary,
+.btn-outline-primary {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-primary:hover,
+.btn-outline-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(13, 110, 253, 0.18);
+}
