@@ -5,9 +5,9 @@ require_once 'includes/functions.php';
 
 $userId = $_SESSION['user']['id'];
 if (isAdmin()) {
-    $stmt = $pdo->query('SELECT p.*, u.name AS employee, (SELECT COUNT(*) FROM pengajuan_files f WHERE f.pengajuan_id = p.id) AS file_count FROM pengajuan p JOIN users u ON p.user_id = u.id ORDER BY p.created_at DESC');
+    $stmt = $pdo->query('SELECT p.*, u.name AS mahasiswa, (SELECT COUNT(*) FROM pengajuan_files f WHERE f.pengajuan_id = p.id) AS file_count FROM pengajuan p JOIN users u ON p.user_id = u.id ORDER BY p.created_at DESC');
 } else {
-    $stmt = $pdo->prepare('SELECT p.*, u.name AS employee, (SELECT COUNT(*) FROM pengajuan_files f WHERE f.pengajuan_id = p.id) AS file_count FROM pengajuan p JOIN users u ON p.user_id = u.id WHERE p.user_id = ? ORDER BY p.created_at DESC');
+    $stmt = $pdo->prepare('SELECT p.*, u.name AS mahasiswa, (SELECT COUNT(*) FROM pengajuan_files f WHERE f.pengajuan_id = p.id) AS file_count FROM pengajuan p JOIN users u ON p.user_id = u.id WHERE p.user_id = ? ORDER BY p.created_at DESC');
     $stmt->execute([$userId]);
 }
 $submissions = $stmt->fetchAll();
@@ -28,7 +28,7 @@ $submissions = $stmt->fetchAll();
                     <tr>
                         <th>No</th>
                         <th>Judul</th>
-                        <th>Pegawai</th>
+                        <th>Mahasiswa</th>
                         <th>Status</th>
                         <th>Tanggal</th>
                         <th>Files</th>
@@ -40,7 +40,7 @@ $submissions = $stmt->fetchAll();
                         <tr>
                             <td><?= $index + 1; ?></td>
                             <td><?= escape($row['title']); ?></td>
-                            <td><?= escape($row['employee']); ?></td>
+                            <td><?= escape($row['mahasiswa']); ?></td>
                             <td><?= escape($row['status']); ?></td>
                             <td><?= escape($row['created_at']); ?></td>
                             <td><?= escape($row['file_count']); ?></td>
@@ -48,7 +48,7 @@ $submissions = $stmt->fetchAll();
                                 <button type="button" class="btn btn-sm btn-info view-details" 
                                     data-bs-toggle="modal" data-bs-target="#detailModal"
                                     data-title="<?= escape($row['title']); ?>"
-                                    data-employee="<?= escape($row['employee']); ?>"
+                                    data-mahasiswa="<?= escape($row['mahasiswa']); ?>"
                                     data-status="<?= escape($row['status']); ?>"
                                     data-created="<?= escape($row['created_at']); ?>"
                                     data-desc="<?= escape($row['description']); ?>"
@@ -79,7 +79,7 @@ $submissions = $stmt->fetchAll();
             </div>
             <div class="modal-body">
                 <div class="mb-3"><strong>Judul:</strong> <span id="detailTitle"></span></div>
-                <div class="mb-3"><strong>Pegawai:</strong> <span id="detailEmployee"></span></div>
+                <div class="mb-3"><strong>Mahasiswa:</strong> <span id="detailMahasiswa"></span></div>
                 <div class="mb-3"><strong>Status:</strong> <span id="detailStatus"></span></div>
                 <div class="mb-3"><strong>Tanggal:</strong> <span id="detailCreated"></span></div>
                 <div class="mb-3"><strong>Deskripsi:</strong><p id="detailDesc" class="mb-0"></p></div>

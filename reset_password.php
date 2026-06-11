@@ -3,7 +3,7 @@ require_once 'config/db.php';
 
 $credentials = [
     'admin@mail.test' => 'admin123',
-    'pegawai@mail.test' => 'pegawai123',
+    'mahasiswa@mail.test' => 'mahasiswa123',
 ];
 
 $results = [];
@@ -26,7 +26,7 @@ foreach ($credentials as $email => $plainPassword) {
             <p class="text-muted">Password akun akan di-reset ke nilai default berikut:</p>
             <ul>
                 <li>admin@mail.test &rarr; admin123</li>
-                <li>pegawai@mail.test &rarr; pegawai123</li>
+                <li>mahasiswa@mail.test &rarr; mahasiswa123</li>
             </ul>
             <?php foreach ($results as $result): ?>
                 <div class="alert alert-<?php echo $result['updated'] ? 'success' : 'warning'; ?>">

@@ -65,8 +65,8 @@ if ($search !== '') {
     $params[]    = "%$search%";
 }
 
-$recentStmt = $pdo->prepare("    
-    SELECT p.id, u.name AS mahasiswa, u.email AS user_email, p.jenis_surat, p.status, p.created_at
+$recentStmt = $pdo->prepare("
+    SELECT p.id, u.name AS mahasiswa, u.email AS user_email, p.title, p.status, p.created_at
     FROM pengajuan p
     JOIN users u ON p.user_id = u.id
     WHERE 1=1 $whereClause
@@ -390,7 +390,7 @@ $avgProcess = $pdo->query("
                     <tr>
                         <th>#</th>
                         <th>Mahasiswa</th>
-                        <th>Jenis Dokumen</th>
+                        <th>Judul Pengajuan</th>
                         <th>Tanggal</th>
                         <th>Status</th>
                         <th>Aksi</th>
@@ -406,7 +406,7 @@ $avgProcess = $pdo->query("
                             <div class="td-name"><?= escape($row['mahasiswa']); ?></div>
                             <div class="td-nim"><?= escape($row['user_email'] ?? '–'); ?></div>
                         </td>
-                        <td><?= escape($row['jenis_surat']); ?></td>
+                        <td><?= escape($row['title']); ?></td>
                         <td class="td-date"><?= date('d M Y', strtotime($row['created_at'])); ?></td>
                         <td>
                             <?php

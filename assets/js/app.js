@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
     detailButtons.forEach(function (button) {
         button.addEventListener('click', function () {
             const title = button.dataset.title;
-            const employee = button.dataset.employee;
+            const mahasiswa = button.dataset.mahasiswa;
             const status = button.dataset.status;
             const created = button.dataset.created;
             const desc = button.dataset.desc;
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const id = button.dataset.attachmentQuery;
 
             document.getElementById('detailTitle').textContent = title;
-            document.getElementById('detailEmployee').textContent = employee;
+            document.getElementById('detailMahasiswa').textContent = mahasiswa;
             document.getElementById('detailStatus').textContent = status;
             document.getElementById('detailCreated').textContent = created;
             document.getElementById('detailDesc').textContent = desc;

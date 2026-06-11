@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS users (
     name VARCHAR(100) NOT NULL,
     email VARCHAR(150) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    role ENUM('Admin','Pegawai') NOT NULL DEFAULT 'Pegawai',
+    role ENUM('Admin','Mahasiswa') NOT NULL DEFAULT 'Mahasiswa',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -34,3 +34,6 @@ CREATE TABLE IF NOT EXISTS pengajuan_files (
 
 INSERT IGNORE INTO users (name, email, password, role) VALUES
 ('Admin Sistem', 'admin@mail.test', '
+-- ── Migration: ganti role Pegawai → Mahasiswa (jalankan jika DB sudah ada) ──
+-- ALTER TABLE users MODIFY role ENUM('Admin','Mahasiswa') NOT NULL DEFAULT 'Mahasiswa';
+-- UPDATE users SET role = 'Mahasiswa' WHERE role = 'Pegawai';
